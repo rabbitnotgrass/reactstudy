@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- React -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.btnClick = this.btnClick.bind(this);
+          this.state = {
+            filmArr: ["爸爸去哪儿", "星际穿越", "时期一万年"],
+          };
+        }
+        btnClick() {
+          this.setState({
+            msg: "change content",
+          });
+        }
+        render() {
+          return (
+            <ul>
+              {this.state.filmArr.map((item, index) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          );
+        }
+      }
+      const rootEle = document.querySelector("#root");
+      const root = ReactDOM.createRoot(rootEle);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
