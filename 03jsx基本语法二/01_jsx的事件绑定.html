@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- React -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+          this.btnClick = this.btnClick.bind(this);
+          this.state = {
+            num: 1,
+          };
+        }
+        btnClick() {
+          this.setState({
+            num: this.state.num + 1,
+          });
+        }
+        btnClick2 = () => {
+          this.setState({
+            num: this.state.num + 1,
+          });
+        };
+
+        render() {
+          const { num } = this.state;
+          return (
+            <div>
+              显示内容: {num}
+              <button onClick={this.btnClick}>第一种方式</button>
+              <button onClick={() => this.btnClick()}>第二种方式</button>
+              <button onClick={this.btnClick2}>第三种方式</button>
+            </div>
+          );
+        }
+      }
+      const rootEle = document.querySelector("#root");
+      const root = ReactDOM.createRoot(rootEle);
+      root.render(<App />);
+    </script>
+  </body>
+</html>
